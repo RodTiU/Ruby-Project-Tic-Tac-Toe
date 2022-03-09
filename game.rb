@@ -18,7 +18,17 @@ module Game
       puts "    3   #{@board_values[2][0]} | #{@board_values[2][1]} | #{@board_values[2][2]} "
     end
   end
-end
 
-board = Game::Board.new()
-board.print_board
+  class StartGame
+    def initialize(player1_name, player1_symbol, player2_name, player2_symbol)
+      @player1_name = player1_name
+      @player2_name = player2_name
+      @player1_symbol = player1_symbol
+      @player2_symbol = player2_symbol
+    end
+
+    def get_names
+      puts "#{@player1_name} is player 1, #{@player2_name} is player 2"
+    end
+  end
+end
