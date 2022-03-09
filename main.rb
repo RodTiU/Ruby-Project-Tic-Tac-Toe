@@ -1,16 +1,23 @@
 require "./game.rb"
 
 board = Game::Board.new()
+game = Game::StartGame.new()
+
 board.print_board
 
-puts "Player 1 name:"
-player1_name = gets.chomp
-puts "Player 1 symbol:"
-player1_symbol = gets.chomp
+player1 = game.player1_name
+player1_symbol = game.player1_symbol
+player2 = game.player2_name
+player2_symbol = game.player2_symbol
 
-puts "Player 2 name:"
-player2_name = gets.chomp
-puts "Player 2 symbol:"
-player2_symbol = gets.chomp
+player1_move = game.player_move(player1)
+vertical_move1 = player1_move[0]
+horizontal_move1 = player1_move[1]
+board.board_values[vertical_move1][horizontal_move1] = player1_symbol
+board.print_board
 
-game = Game::StartGame.new(player1_name, player1_symbol, player2_name, player2_symbol)
+player2_move = game.player_move(player2)
+vertical_move2 = player2_move[0]
+horizontal_move2 = player2_move[1]
+board.board_values[vertical_move2][horizontal_move2] = player2_symbol
+board.print_board
