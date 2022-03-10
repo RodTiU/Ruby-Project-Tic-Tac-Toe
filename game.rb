@@ -39,12 +39,34 @@ module Game
       puts "#{@player1_name} is player 1 with symbol #{@player1_symbol}, #{@player2_name} is player 2 with symbol #{@player2_symbol}"
     end
 
-    def player_move(player)
+    def player_move(player, player_symbol, board)
+      # initialize variables to repeat_move function
+      @last_player = player
+      @last_player_symbol = player_symbol
+      @last_board = board
+
       puts "#{player} move in ⇣"
       @move_v = gets.chomp
+
       puts "#{player} move in ⇢"
       @move_h = gets.chomp
-      [@move_v.to_i - 1, @move_h.to_i - 1]
+
+      if !(1..3).include?(@move_v.to_i) || !(1..3).include?(@move_h.to_i)
+        puts "Not valid move, out of range!"
+        repeat_move()
+      elsif board[@move_v.to_i - 1][@move_h.to_i - 1] != " "
+        puts "Repeat move, square is occupied!"
+        repeat_move()
+      else
+        board[@move_v.to_i - 1][@move_h.to_i - 1] = player_symbol
+      end
+    end
+
+    def repeat_move
+      player_move(@last_player, @last_player_symbol, @last_board)
+    end
+
+    def search_winner(board)
     end
   end
 end
